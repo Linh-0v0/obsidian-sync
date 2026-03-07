@@ -1,6 +1,6 @@
 # Obsidian Sync
 
-Two-way sync for your Obsidian vault to Google Drive using [rclone](https://rclone.org/), running automatically every 30 minutes via a systemd timer.
+Two-way sync for your Obsidian vault to Google Drive using [rclone](https://rclone.org/), running automatically every 15 minutes via a systemd timer.
 
 ## Features
 
@@ -66,6 +66,7 @@ This is required once to establish the baseline for bisync:
 ```bash
 rclone bisync /path/to/your/vault gdrive:ObsidianVault --resync
 ```
+rclone bisync /home/linh/Obsidian gdrive:ObsidianVault --resync
 
 ### 6. Install the systemd timer
 
@@ -105,4 +106,4 @@ To trigger a sync manually at any time:
 
 ## How it works
 
-Every 30 minutes, the systemd timer runs `sync.sh` which calls `rclone bisync` to compare your local vault with the Google Drive folder. New or modified files are synced in both directions. Conflicts are resolved by keeping the newer file and renaming the older one with a `.conflict` suffix so nothing is lost. Deletes are never propagated — both sides act as append-only.
+Every 15 minutes, the systemd timer runs `sync.sh` which calls `rclone bisync` to compare your local vault with the Google Drive folder. New or modified files are synced in both directions. Conflicts are resolved by keeping the newer file and renaming the older one with a `.conflict` suffix so nothing is lost. Deletes are never propagated — both sides act as append-only.
