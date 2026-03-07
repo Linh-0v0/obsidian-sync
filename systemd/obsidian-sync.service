@@ -1,0 +1,11 @@
+[Unit]
+Description=Obsidian Vault Sync to Google Drive
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/linh/Projects/obsidian-sync/sync.sh
+
+[Install]
+WantedBy=default.target
